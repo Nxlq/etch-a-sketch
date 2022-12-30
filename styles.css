@@ -1,0 +1,31 @@
+body {
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
+.grid-container{
+    background-color: green;
+    height: 480px;
+    width: 480px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0px;
+}
+
+.grid-square{
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    /* border: solid 1px gray; */
+    margin: 0px;
+}
+
+.dragged{
+    background-color: rgb(192, 89, 149);
+}
