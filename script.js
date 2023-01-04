@@ -1,6 +1,6 @@
 const gridContainer = document.querySelector('.grid-container');
 const body = document.querySelector('body');
-const defaultGridSize = 16;
+const defaultGridSize = 32;
 let currentGridSize = defaultGridSize;
 
 let mouseDown = false;
@@ -19,12 +19,13 @@ body.addEventListener('mouseup', function(e){
 });
 
 function createGrid(){
-    const boxSize =  `${480 / currentGridSize}px`
+    const boxSizeHeight =  `${450 / currentGridSize}px`;
+    const boxSizeWidth = `${750 / currentGridSize}px`;
     for(let  i= 0; i < currentGridSize * currentGridSize; i++){
         const gridSqaure = document.createElement('div');
         gridSqaure.classList.add('grid-square');
-        gridSqaure.style.width = boxSize;
-        gridSqaure.style.height = boxSize;
+        gridSqaure.style.width = boxSizeWidth;
+        gridSqaure.style.height = boxSizeHeight;
         gridContainer.appendChild(gridSqaure);
     };
     
