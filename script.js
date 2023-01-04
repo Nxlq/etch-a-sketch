@@ -1,5 +1,12 @@
 const gridContainer = document.querySelector('.grid-container');
 const body = document.querySelector('body');
+const btnClear = document.querySelector('.btn-clear');
+
+const classicGridColor = 'rgb(236, 232, 190)'
+const classicGridTrailColor = '#1d1d1d'
+
+
+
 const defaultGridSize = 32;
 let currentGridSize = defaultGridSize;
 
@@ -22,11 +29,12 @@ function createGrid(){
     const boxSizeHeight =  `${450 / currentGridSize}px`;
     const boxSizeWidth = `${750 / currentGridSize}px`;
     for(let  i= 0; i < currentGridSize * currentGridSize; i++){
-        const gridSqaure = document.createElement('div');
-        gridSqaure.classList.add('grid-square');
-        gridSqaure.style.width = boxSizeWidth;
-        gridSqaure.style.height = boxSizeHeight;
-        gridContainer.appendChild(gridSqaure);
+        const gridSquare = document.createElement('div');
+        gridSquare.classList.add('grid-square');
+        gridSquare.style.width = boxSizeWidth;
+        gridSquare.style.height = boxSizeHeight;
+        gridSquare.style.backgroundColor = 'rgb(236, 232, 190)';
+        gridContainer.appendChild(gridSquare);
     };
     
 };
@@ -37,15 +45,23 @@ const gridSquares = document.querySelectorAll('.grid-square');
 console.log(gridSquares);
 
 gridSquares.forEach(function(square){
-    square.addEventListener('mouseover', drawTrail);
-    square.addEventListener('mousedown', drawTrail);
+    square.addEventListener('mouseover', drawTrailClassic);
+    square.addEventListener('mousedown', drawTrailClassic);
     // square.addEventListener('mouseout', function(){
     //     square.classList.remove('dragged');
     // })
 })
 
-function drawTrail(e){
-    if(e.type === "mouseover" && !mouseDown) return;
-        e.target.style.backgroundColor = 'pink';
+function drawTrailClassic(e){
+   if(e.type === 'mouseover' && !mouseDown) return;
+   e.target.style.backgroundColor = '#1d1d1d';
 }
 
+btnClear.addEventListener('click', () => {
+        gridSquares.forEach(square => square.style.backgroundColor = 'rgb(236, 232, 190)')
+    });
+
+function drawTrailConfetti(e){
+    console.log(e);
+}
+drawTrailConfetti();
