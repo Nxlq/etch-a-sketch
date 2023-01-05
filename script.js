@@ -1,14 +1,27 @@
 const gridContainer = document.querySelector('.grid-container');
 const body = document.querySelector('body');
 const btnClear = document.querySelector('.btn-clear');
+const btnClassic = document.querySelector('.btn-classic');
+const btnConfetti = document.querySelector('.btn-confetti');
+const btnCustom = document.querySelector('btn-custom');
+const btnChangeSizeSmall = document.querySelector('#small')
+const btnChangeSizeMedium = document.querySelector('#medium')
+const btnChangeSizeLarge = document.querySelector('#large')
+
 
 const classicGridColor = 'rgb(236, 232, 190)'
 const classicGridTrailColor = '#1d1d1d'
 
+const smallTrailSize = 30;
+const mediumTrailSize = 50;
+const largeTrailSize = 70;
 
+let defaultColor = classicGridColor;
+let defaultGridTrail = classicGridTrailColor;
 
-const defaultGridSize = 32;
-let currentGridSize = defaultGridSize;
+let currentGridTrailColor = classicGridTrailColor;
+let currentGridColor = classicGridColor;
+let currentGridSize = smallTrailSize;
 
 let mouseDown = false;
 body.addEventListener('mousedown', function(e){
@@ -26,6 +39,13 @@ body.addEventListener('mouseup', function(e){
 });
 
 function createGrid(){
+    console.log(`currnet grid size: ${gridContainer.childElementCount}`);
+    if(gridContainer.lastElementChild){
+        while(gridContainer.lastElementChild){
+            gridContainer.removeChild(gridContainer.lastElementChild);
+            }
+            console.log(gridContainer.childElementCount)
+        };
     const boxSizeHeight =  `${450 / currentGridSize}px`;
     const boxSizeWidth = `${750 / currentGridSize}px`;
     for(let  i= 0; i < currentGridSize * currentGridSize; i++){
@@ -36,32 +56,38 @@ function createGrid(){
         gridSquare.style.backgroundColor = 'rgb(236, 232, 190)';
         gridContainer.appendChild(gridSquare);
     };
-    
+    const gridSquares = document.querySelectorAll('.grid-square');
+
+    gridSquares.forEach(function(square){
+        square.addEventListener('mouseover', drawTrailClassic);
+        square.addEventListener('mousedown', drawTrailClassic);
+    });
+    console.log(`after grid size: ${gridContainer.childElementCount}`);
+
 };
 
 createGrid();
 
-const gridSquares = document.querySelectorAll('.grid-square');
-console.log(gridSquares);
-
-gridSquares.forEach(function(square){
-    square.addEventListener('mouseover', drawTrailClassic);
-    square.addEventListener('mousedown', drawTrailClassic);
-    // square.addEventListener('mouseout', function(){
-    //     square.classList.remove('dragged');
-    // })
-})
 
 function drawTrailClassic(e){
    if(e.type === 'mouseover' && !mouseDown) return;
-   e.target.style.backgroundColor = '#1d1d1d';
+   e.target.style.backgroundColor = currentGridTrailColor;
 }
+
+btnChangeSizeSmall.addEventListener('click', changeTrailSize)
+
+btnChangeSizeMedium.addEventListener('click', changeTrailSize)
+
+btnChangeSizeLarge.addEventListener('click', changeTrailSize)
 
 btnClear.addEventListener('click', () => {
-        gridSquares.forEach(square => square.style.backgroundColor = 'rgb(236, 232, 190)')
+    gridContainer.childNodes.forEach(child => child.style.backgroundColor = currentGridColor);
     });
 
-function drawTrailConfetti(e){
-    console.log(e);
+function changeTrailSize(){
+    if(this.id === 'small') currentGridSize = smallTrailSize;
+    if(this.id === 'medium') currentGridSize = mediumTrailSize;
+    if(this.id === 'large') currentGridSize = largeTrailSize;
+    createGrid();
 }
-drawTrailConfetti();
+

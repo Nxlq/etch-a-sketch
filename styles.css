@@ -29,10 +29,13 @@ body {
 .container-side {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 80px;
+    width: 266.77px;
 }
 
-.buttons-div{
+.buttons-styles-div,
+.buttons-sizes-div{
     display: flex;
     flex-direction: column;
     gap: 100px;
@@ -124,6 +127,7 @@ h2 {
     height: 120px;
     width: 120px;
     background-color: white;
+    border: solid darkgray 5px;
     border-radius: 50%;
     display: inline-block;
 }
