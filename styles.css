@@ -50,6 +50,20 @@ button {
     color: white;
 }
 
+.btn-custom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#color-picker{
+    height: 25px;
+    width: 25px;
+    padding: 0px;
+    border-color: black;
+}
+
 .btn-clear{
    height: 48px;
    width: 120px;
@@ -66,11 +80,11 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: gold;
 }
 
 h1 {
     font-size: 50px;
-    color: gold;
     margin: 0px;
     margin-top: 10px;
 }
@@ -94,7 +108,7 @@ h2 {
 
 
 .grid-container {
-    background-color: green;
+    background-color: rgb(236, 232, 190);
     height: 450px;
     width: 750px;
     display: flex;
